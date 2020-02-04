@@ -11,17 +11,26 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Application["Clicks"] == null)
+                {
+                    Application["Clicks"] = 0;
+                }
+                TextBox1.Text = Application["Clicks"].ToString();
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Console.ReadKey();
-            Console.WriteLine("Hai");
+            int ClicksCount = (int)Application["Clicks"] + 1;
+            TextBox1.Text = ClicksCount.ToString();
+            Application["Clicks"] = ClicksCount;
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
+            
 
         }
     }
